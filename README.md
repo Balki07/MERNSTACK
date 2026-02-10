@@ -1,15 +1,3 @@
-I'm R.Balaganesh from Achariya College of Engineering Technology currectly pursuing B.Tech Computer Science and Engineering who started to learn the MERNSTACK Developement from today,
-as a student I am fully motivated and actively started to learn aabout the MERNSTACK Development.
-The main objective me is that 
-    I am fully eagered to learn the Full-Stack Development and analyzing every aspect to improve it by developinp the code
-    I am ready to understand the core concepts of the RESTful API.
-    To improve problem-solving and debugging skills.
-    the Techstack that we used in this project are
-    MongoDB
-    Express
-    React.js
-    Node.js
-    # 🚀 MERN Stack Learning Journey
 ## Hi! I am R.Balaganesh from Achariya College of Engineering Techmology currently pursuing Computer Science and Engineering who is passionate about learning modern web development.  
 # I am currently focusing on mastering the **MERN Stack** to build fast, scalable, and real-world web applications.
 
@@ -44,12 +32,6 @@ This project uses the **MERN technology stack**, which consists of:
 ### 📌 Node.js
 - Server-side JavaScript runtime
 - Handles business logic and server operations
-
-## ⚙️ Additional Tools
-- HTML5, CSS3, JavaScript (ES6+)
-- Git & GitHub
-- Postman (API testing)
-- VS Code (Code editor)
 
 ## 📌 Note
 This repository represents my learning journey in MERN Stack development.  
