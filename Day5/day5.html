@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS Full Practice</title>
+</head>
+
+<body>
+
+<h1>JavaScript Assignment</h1>
+
+<hr>
+
+<!-- ================= DOM QUESTIONS (1–16) ================= -->
+
+<h2>DOM Questions</h2>
+
+<p id="q1">Welcome</p>
+
+<div class="q2">Item</div>
+
+<ul class="q3">
+<li>Home</li>
+</ul>
+
+<div id="q4"></div>
+
+<div id="q5"></div>
+
+<img class="q6" width="80">
+
+<div class="q7">
+<p>Hello</p>
+</div>
+
+<button id="q8">Toggle Theme</button>
+
+<div class="q9">
+Card
+<button data-action="delete">Delete</button>
+</div>
+
+<input id="q10in">
+<button id="q10btn">Add</button>
+<ul id="q10list"></ul>
+
+<ul id="q11">
+<li data-user-id="1">John</li>
+</ul>
+
+<button id="q12d">-</button>
+<span id="q12">0</span>
+<button id="q12i">+</button>
+
+<br><br>
+
+<input id="q13">
+<ul>
+<li class="q13c">India</li>
+<li class="q13c">Japan</li>
+</ul>
+
+<div class="q14" data-color="red">Red</div>
+<div class="q14" data-color="blue">Blue</div>
+
+<ul id="q15">
+<li draggable="true">A</li>
+<li draggable="true">B</li>
+</ul>
+
+<button id="q16">Open Modal</button>
+
+<hr>
+
+<h2>Function Questions (Console)</h2>
+
+<script>
+
+/* ================= DOM (1–16) ================= */
+
+/* 1 */
+q1.textContent="My Awesome Page";
+
+/* 2 */
+document.querySelector(".q2").style.border="2px solid red";
+
+/* 3 */
+document.querySelector(".q3 li").style.background="lightblue";
+
+/* 4 */
+var b=document.createElement("button");
+b.textContent="Click Me";
+q4.appendChild(b);
+
+/* 5 */
+var d=document.createElement("div");
+var s=document.createElement("span");
+s.textContent="Apple ";
+var r=document.createElement("button");
+r.textContent="Remove";
+d.append(s,r);
+q5.appendChild(d);
+
+/* 6 */
+document.querySelector(".q6").src=
+"https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d";
+
+/* 7 */
+document.querySelector(".q7 p").style.background="yellow";
+
+/* 8 */
+q8.onclick=function(){
+
+ if(document.body.style.background=="black"){
+  document.body.style.background="white";
+  document.body.style.color="black";
+ }else{
+  document.body.style.background="black";
+  document.body.style.color="white";
+ }
+};
+
+/* 9 */
+document.onclick=function(e){
+
+ if(e.target.dataset.action=="delete"){
+  e.target.parentElement.remove();
+ }
+};
+
+/* 10 */
+q10btn.onclick=function(){
+
+ if(q10in.value=="")return;
+
+ var li=document.createElement("li");
+ li.textContent=q10in.value;
+
+ var d=document.createElement("button");
+ d.textContent="Del";
+
+ d.onclick=function(){
+  li.remove();
+ };
+
+ li.appendChild(d);
+ q10list.appendChild(li);
+
+ q10in.value="";
+};
+
+/* 11 */
+q11.onclick=function(e){
+
+ if(e.target.tagName=="LI"){
+  console.log("Q11:",e.target.dataset.userId);
+ }
+};
+
+/* 12 */
+var c=0;
+
+q12i.onclick=function(){
+ c++;
+ q12.textContent=c;
+};
+
+q12d.onclick=function(){
+
+ if(c>0)c--;
+ q12.textContent=c;
+};
+
+/* 13 */
+q13.oninput=function(){
+
+ var v=q13.value.toLowerCase();
+
+ var list=
+ document.getElementsByClassName("q13c");
+
+ for(var i=0;i<list.length;i++){
+
+  if(list[i].textContent
+  .toLowerCase().includes(v)){
+   list[i].style.display="block";
+  }else{
+   list[i].style.display="none";
+  }
+ }
+};
+
+/* 14 */
+var q14=document.getElementsByClassName("q14");
+
+for(var i=0;i<q14.length;i++){
+
+ q14[i].onclick=function(){
+
+  document.body.style.background=
+  this.dataset.color;
+ };
+}
+
+/* 15 */
+var drag=null;
+
+var li=document.querySelectorAll("#q15 li");
+
+for(var i=0;i<li.length;i++){
+
+ li[i].ondragstart=function(){
+  drag=this;
+ };
+
+ li[i].ondragover=function(e){
+  e.preventDefault();
+ };
+
+ li[i].ondrop=function(){
+
+  var t=this.textContent;
+
+  this.textContent=drag.textContent;
+
+  drag.textContent=t;
+ };
+}
+
+/* 16 */
+q16.onclick=function(){
+
+ var o=document.createElement("div");
+ var m=document.createElement("div");
+
+ m.innerHTML=
+ "Modal<br><button id='c'>Close</button>";
+
+ o.appendChild(m);
+ document.body.appendChild(o);
+
+ c.onclick=function(){
+  o.remove();
+ };
+};
+
+
+
+/* ================= FUNCTIONS (17–32) ================= */
+
+console.log("===== FUNCTION QUESTIONS =====");
+
+/* 17 */
+function getUserInitials(u){
+ return u.firstName[0]+u.lastName[0];
+}
+console.log("Q17:",getUserInitials({firstName:"Rahul",lastName:"Sharma"}));
+
+
+/* 18 */
+function countProperties(o){
+ return Object.keys(o).length;
+}
+console.log("Q18:",countProperties({a:1,b:2,c:3}));
+
+
+/* 19 */
+function invertObject(o){
+
+ var r={};
+
+ for(var k in o){
+  r[o[k]]=k;
+ }
+
+ return r;
+}
+console.log("Q19:",invertObject({a:1,b:2}));
+
+
+/* 20 */
+function removeFalsyValues(a){
+ return a.filter(Boolean);
+}
+console.log("Q20:",removeFalsyValues([0,1,false,"",2]));
+
+
+/* 21 */
+function groupByAge(p){
+
+ var r={};
+
+ p.forEach(x=>{
+
+  if(!r[x.age]) r[x.age]=[];
+
+  r[x.age].push(x);
+ });
+
+ return r;
+}
+console.log("Q21:",
+groupByAge([
+{name:"A",age:24},
+{name:"B",age:24},
+{name:"C",age:30}
+]));
+
+
+/* 22 */
+function findMostFrequent(a){
+
+ var m={},max=0,res;
+
+ for(var x of a){
+
+  m[x]=(m[x]||0)+1;
+
+  if(m[x]>max){
+   max=m[x];
+   res=x;
+  }
+ }
+
+ return res;
+}
+console.log("Q22:",findMostFrequent([1,2,2,3,3,3]));
+
+
+/* 23 */
+function flatten(a){
+
+ var r=[];
+
+ a.forEach(x=>{
+
+  if(Array.isArray(x)){
+   r=r.concat(flatten(x));
+  }else{
+   r.push(x);
+  }
+ });
+
+ return r;
+}
+console.log("Q23:",flatten([1,[2,3],[4,[5]]] ));
+
+
+/* 24 */
+function mergeObjects(){
+
+ var r={};
+
+ for(var o of arguments){
+
+  for(var k in o){
+
+   if(typeof o[k]=="object"
+   && !Array.isArray(o[k])){
+
+    r[k]=mergeObjects(r[k]||{},o[k]);
+
+   }else{
+    r[k]=o[k];
+   }
+  }
+ }
+
+ return r;
+}
+console.log("Q24:",
+mergeObjects({a:1,b:{x:2}},{b:{y:3}}));
+
+
+/* 25 */
+function rotateArray(a,k){
+
+ k%=a.length;
+
+ return a.slice(-k).concat(a.slice(0,-k));
+}
+console.log("Q25:",rotateArray([1,2,3,4],2));
+
+
+/* 26 */
+function intersection(a,b){
+
+ var s=new Set(b);
+
+ return [...new Set(a.filter(x=>s.has(x)))];
+}
+console.log("Q26:",intersection([1,2,3],[2,3,4]));
+
+
+/* 27 */
+function groupAnagrams(w){
+
+ var m={};
+
+ w.forEach(x=>{
+
+  var k=x.split("").sort().join("");
+
+  if(!m[k]) m[k]=[];
+
+  m[k].push(x);
+ });
+
+ return Object.values(m);
+}
+console.log("Q27:",
+groupAnagrams(["eat","tea","tan","ate","nat"]));
+
+
+/* 28 */
+function moveZeros(a){
+
+ var p=0;
+
+ for(var i=0;i<a.length;i++){
+
+  if(a[i]!==0){
+   a[p++]=a[i];
+  }
+ }
+
+ while(p<a.length) a[p++]=0;
+
+ return a;
+}
+console.log("Q28:",moveZeros([0,1,0,3]));
+
+
+/* 29 */
+function longestConsecutive(a){
+
+ var s=new Set(a),max=0;
+
+ for(var n of s){
+
+  if(!s.has(n-1)){
+
+   var c=n,count=1;
+
+   while(s.has(c+1)){
+    c++;count++;
+   }
+
+   max=Math.max(max,count);
+  }
+ }
+
+ return max;
+}
+console.log("Q29:",
+longestConsecutive([100,4,200,1,3,2]));
+
+
+/* 30 */
+function productExceptSelf(a){
+
+ var r=[],l=1,rgt=1;
+
+ for(var i=0;i<a.length;i++){
+  r[i]=l;
+  l*=a[i];
+ }
+
+ for(var i=a.length-1;i>=0;i--){
+  r[i]*=rgt;
+  rgt*=a[i];
+ }
+
+ return r;
+}
+console.log("Q30:",
+productExceptSelf([1,2,3,4]));
+
+
+/* 31 */
+function deepEqual(a,b){
+
+ if(a===b) return true;
+
+ if(typeof a!="object"||
+ typeof b!="object") return false;
+
+ if(a==null||b==null) return false;
+
+ var k1=Object.keys(a);
+ var k2=Object.keys(b);
+
+ if(k1.length!=k2.length) return false;
+
+ for(var k of k1){
+
+  if(!deepEqual(a[k],b[k])) return false;
+ }
+
+ return true;
+}
+console.log("Q31:",
+deepEqual({x:1,y:{z:2}},
+{x:1,y:{z:2}}));
+
+
+/* 32 */
+function serialize(o){
+
+ return JSON.stringify(o,function(k,v){
+
+  if(v instanceof Date)
+   return {t:"d",v:v};
+
+  if(v===undefined)
+   return {t:"u"};
+
+  return v;
+ });
+}
+
+function deserialize(s){
+
+ return JSON.parse(s,function(k,v){
+
+  if(v&&v.t=="d")
+   return new Date(v.v);
+
+  if(v&&v.t=="u")
+   return undefined;
+
+  return v;
+ });
+}
+
+var o32={a:1,b:new Date(),c:undefined};
+
+var st=serialize(o32);
+
+console.log("Q32 Before:",o32);
+console.log("Serialized:",st);
+console.log("After:",deserialize(st));
+
+</script>
+
+</body>
+</html>

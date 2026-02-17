@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS Functions</title>
+</head>
+
+<body>
+
+<h1>JavaScript Functions</h1>
+<script>
+
+/* 1. Get User Initials */
+function getUserInitials(u){
+  return u.firstName[0] + u.lastName[0];
+}
+console.log("1.", getUserInitials({firstName:"Rahul",lastName:"Sharma"}));
+
+/* 2. Count Properties */
+function countProperties(o){
+  return Object.keys(o).length;
+}
+console.log("2.", countProperties({a:1,b:2,c:3}));
+
+/* 3. Invert Object */
+function invertObject(o){
+  var r = {};
+  for(var k in o){
+    r[o[k]] = k;
+  }
+  return r;
+}
+console.log("3.", invertObject({a:1,b:2}));
+
+/* 4. Remove Falsy Values */
+function removeFalsyValues(a){
+  var r = [];
+  for(var i=0;i<a.length;i++){
+    if(a[i]){
+      r.push(a[i]);
+    }
+  }
+  return r;
+}
+console.log("4.", removeFalsyValues([0,1,false,"",2,3]));
+
+/* 5. Group By Age */
+function groupByAge(arr){
+  var r = {};
+  for(var i=0;i<arr.length;i++){
+    var age = arr[i].age;
+    if(!r[age]){
+      r[age] = [];
+    }
+    r[age].push(arr[i]);
+  }
+  return r;
+}
+console.log("5.", groupByAge([
+  {name:"A",age:24},
+  {name:"B",age:30},
+  {name:"C",age:24}
+]));
+
+/* 6. Most Frequent */
+function findMostFrequent(a){
+  var m = {};
+  var max = 0;
+  var res;
+  for(var i=0;i<a.length;i++){
+    var x = a[i];
+    if(!m[x]){
+      m[x]=1;
+    }else{
+      m[x]++;
+    }
+    if(m[x] > max){
+      max = m[x];
+      res = x;
+    }
+  }
+  return res;
+}
+console.log("6.", findMostFrequent([1,2,2,3,3,3,4]));
+
+/* 7. Flatten Array */
+function flatten(a){
+  var r = [];
+  for(var i=0;i<a.length;i++){
+    if(Array.isArray(a[i])){
+      var t = flatten(a[i]);
+      for(var j=0;j<t.length;j++){
+        r.push(t[j]);
+      }
+    }else{
+      r.push(a[i]);
+    }
+  }
+  return r;
+}
+console.log("7.", flatten([1,[2,3],[4,[5]]] ));
+
+/* 8. Deep Merge */
+function mergeObjects(a,b){
+  var r = {};
+  for(var k in a){
+    r[k] = a[k];
+  }
+  for(var k in b){
+    if(typeof b[k]=="object"){
+      r[k] = mergeObjects(r[k]||{}, b[k]);
+    }else{
+      r[k] = b[k];
+    }
+  }
+  return r;
+}
+console.log("8.", mergeObjects(
+  {a:1,b:{x:2}},
+  {b:{y:3},c:4}
+));
+
+/* 9. Rotate Array */
+function rotateArray(a,k){
+  var r = [];
+  k = k % a.length;
+  for(var i=a.length-k;i<a.length;i++){
+    r.push(a[i]);
+  }
+  for(var i=0;i<a.length-k;i++){
+    r.push(a[i]);
+  }
+  return r;
+}
+console.log("9.", rotateArray([1,2,3,4,5],2));
+
+/* 10. Intersection */
+function intersection(a,b){
+  var r = [];
+  for(var i=0;i<a.length;i++){
+    if(b.includes(a[i]) && !r.includes(a[i])){
+      r.push(a[i]);
+    }
+  }
+  return r;
+}
+console.log("10.", intersection([1,2,3,4],[3,4,5]));
+
+/* 11. Group Anagrams */
+function groupAnagrams(arr){
+  var m = {};
+  for(var i=0;i<arr.length;i++){
+    var w = arr[i];
+    var k = w.split("").sort().join("");
+    if(!m[k]){
+      m[k]=[];
+    }
+    m[k].push(w);
+  }
+  return Object.values(m);
+}
+console.log("11.", groupAnagrams(
+ ["eat","tea","tan","ate","nat","bat"]
+));
+
+/* 12. Move Zeros */
+function moveZeros(a){
+  var r = [];
+  var count = 0;
+  for(var i=0;i<a.length;i++){
+    if(a[i]==0){
+      count++;
+    }else{
+      r.push(a[i]);
+    }
+  }
+  while(count--){
+    r.push(0);
+  }
+  return r;
+}
+console.log("12.", moveZeros([0,1,0,3,12]));
+
+/* 13. Longest Consecutive */
+function longestConsecutive(a){
+  var s = new Set(a);
+  var max = 0;
+  for(var n of s){
+    if(!s.has(n-1)){
+      var c = n;
+      var count = 1;
+      while(s.has(c+1)){
+        c++;
+        count++;
+      }
+      if(count > max){
+        max = count;
+      }
+    }
+  }
+  return max;
+}
+console.log("13.", longestConsecutive([100,4,200,1,3,2]));
+
+/* 14. Product Except Self */
+function productExceptSelf(a){
+  var r = [];
+  var left = 1;
+  for(var i=0;i<a.length;i++){
+    r[i] = left;
+    left *= a[i];
+  }
+  var right = 1;
+  for(var i=a.length-1;i>=0;i--){
+    r[i] *= right;
+    right *= a[i];
+  }
+  return r;
+}
+console.log("14.", productExceptSelf([1,2,3,4]));
+
+/* 15. Deep Equal */
+function deepEqual(a,b){
+  if(a===b) return true;
+  if(typeof a!="object" || typeof b!="object") return false;
+  if(!a || !b) return false;
+  var k1 = Object.keys(a);
+  if(k1.length != Object.keys(b).length) return false;
+  for(var i=0;i<k1.length;i++){
+    var k = k1[i];
+    if(!deepEqual(a[k], b[k])){
+      return false;
+    }
+  }
+  return true;
+}
+console.log("15.", deepEqual(
+  {x:1,y:{z:2}},
+  {x:1,y:{z:2}}
+));
+
+/* 16. Serialize / Deserialize */
+function serialize(o){
+  return JSON.stringify(o);
+}
+function deserialize(s){
+  return JSON.parse(s);
+}
+var obj = {name:"A",age:20};
+var str = serialize(obj);
+console.log("16 Serialized:", str);
+console.log("16 After:", deserialize(str));
+</script>
+</body>
+</html>
