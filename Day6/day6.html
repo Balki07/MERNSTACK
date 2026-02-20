@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sports App</title>
+
+<style>
+body{
+  font-family:Arial;
+  background:#f4f6f9;
+  padding:40px;
+}
+
+.box{
+  width:350px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  box-shadow:0 0 10px #ccc;
+}
+
+input,button{
+  width:100%;
+  padding:8px;
+  margin:6px 0;
+}
+
+button{
+  background:#007bff;
+  color:white;
+  border:none;
+}
+
+.hidden{display:none;}
+</style>
+</head>
+
+<body>
+
+
+<div class="box" id="loginBox">
+<h2>Login</h2>
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+<p id="error" style="color:red"></p>
+</div>
+
+<!-- DASHBOARD -->
+<div class="box hidden" id="dashBox">
+<h2 id="title"></h2>
+<p id="info"></p>
+<button onclick="loadPlayers()">View Team</button>
+<button onclick="logout()">Logout</button>
+<hr>
+
+<!-- ADD PLAYER -->
+<div id="addBox">
+<h3>Add Player</h3>
+<input id="pname" placeholder="Name">
+<input id="prole" placeholder="Role">
+<input id="page" type="number" placeholder="Age">
+<input id="pjersey" type="number" placeholder="Jersey">
+<button onclick="addPlayer()">Add</button>
+</div>
+<ul id="list"></ul>
+</div>
+<script>
+let user=null;
+
+// LOGIN
+function login(){
+  const email=document.getElementById("email").value;
+  const pass=document.getElementById("password").value;
+  fetch(`http://localhost:3000/users?email=${email}&password=${pass}`)
+  .then(r=>r.json())
+  .then(d=>{
+    if(d.length===0){
+      document.getElementById("error").innerText="Wrong Login";
+      return;
+    }
+    user=d[0];
+    openDash();
+  });
+}
+
+// OPEN DASHBOARD
+function openDash(){
+  document.getElementById("loginBox").classList.add("hidden");
+  document.getElementById("dashBox").classList.remove("hidden");
+  document.getElementById("title").innerText = user.role.toUpperCase()+" DASHBOARD";
+  document.getElementById("info").innerText = `Welcome ${user.name}`;
+
+  // ONLY ADMIN & COACH
+  if(user.role==="player"){
+    document.getElementById("addBox").style.display="none";
+  }
+}
+
+// LOAD PLAYERS
+function loadPlayers(){
+  fetch("http://localhost:3000/cricketPlayers")
+  .then(r=>r.json())
+  .then(d=>{
+    const list=document.getElementById("list");
+    list.innerHTML="";
+    d.forEach(p=>{
+      const li=document.createElement("li");
+      li.innerText=`${p.name} | ${p.role}`;
+      list.appendChild(li);
+    });
+  });
+}
+
+// ADD PLAYER (SECURE)
+function addPlayer(){
+
+  // HARD BLOCK
+  if(!user || (user.role!=="admin" && user.role!=="coach")){
+    alert("Not Allowed");
+    return;
+  }
+  const obj={
+    name:document.getElementById("pname").value,
+    role:document.getElementById("prole").value,
+    age:Number(document.getElementById("page").value),
+    jersey:Number(document.getElementById("pjersey").value)
+  };
+  fetch("http://localhost:3000/cricketPlayers",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify(obj)
+  })
+  .then(()=>loadPlayers());
+}
+
+// LOGOUT
+function logout(){
+  user=null;
+  document.getElementById("dashBox").classList.add("hidden");
+  document.getElementById("loginBox").classList.remove("hidden");
+}
+</script>
+</body>
+</html>
