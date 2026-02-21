@@ -1,0 +1,24 @@
+.about {
+  background: rgb(254, 254, 254);
+  padding: 40px;
+  margin: 40px auto;
+  width: 80%;
+  max-width: 800px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.about h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+
+.about h3 {
+  margin-top: 15px;
+  color: #334155;
+}
+
+.about ul {
+  padding-left: 20px;
+}
