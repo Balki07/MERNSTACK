@@ -1,0 +1,63 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": "ec2e",
+      "name": "Dhoni",
+      "email": "dhoni@gmail.com",
+      "password": "dhoni",
+      "role": "coach"
+    },
+    {
+      "id": "38ad",
+      "name": "Bravo",
+      "email": "bravo@gmail.com",
+      "password": "bravo",
+      "role": "coach"
+    },
+    {
+      "id": "d084",
+      "name": "Raina",
+      "email": "Raina@gmail.com",
+      "password": "raina",
+      "role": "player"
+    },
+    {
+      "id": "93c1",
+      "name": "bala",
+      "email": "bala@gmail.com",
+      "password": "bala",
+      "role": "player"
+    }
+  ],
+  "players": [
+    {
+      "id": 1,
+      "name": "Raina",
+      "role": "Batsman",
+      "age": 36,
+      "country": "India"
+    },
+    {
+      "id": 2,
+      "name": "Bravo",
+      "role": "All-Rounder",
+      "age": 40,
+      "country": "West Indies"
+    },
+    {
+      "id": 3,
+      "name": "Bala",
+      "role": "Bowler",
+      "age": 22,
+      "country": "India"
+    }
+  ],
+  "requests": []
+}
