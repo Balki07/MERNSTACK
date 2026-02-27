@@ -1,0 +1,180 @@
+/* =========================
+   GLOBAL STYLES
+========================= */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+}
+
+.app-container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  background: linear-gradient(90deg, #00f260, #0575e6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* =========================
+   FORM
+========================= */
+.form {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 40px;
+  animation: slideDown 0.6s ease-in-out;
+}
+
+.form input {
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  min-width: 150px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition: 0.3s ease;
+}
+
+.form input:focus {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+button {
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* ADD / UPDATE BUTTON */
+.form button {
+  background: linear-gradient(90deg, #00f260, #0575e6);
+  color: white;
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+  background: linear-gradient(90deg, #ff416c, #ff4b2b);
+  color: white;
+}
+
+/* EDIT BUTTON */
+.edit-btn {
+  background: linear-gradient(90deg, #f7971e, #ffd200);
+  color: black;
+}
+
+/* =========================
+   CARD GRID
+========================= */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+/* =========================
+   CARD
+========================= */
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 20px;
+  transition: 0.3s ease;
+  animation: fadeUp 0.6s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 1.3rem;
+}
+
+.card-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* =========================
+   LOADING
+========================= */
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  animation: pulse 1.5s infinite;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form input {
+    width: 100%;
+  }
+}
