@@ -47,3 +47,5 @@ This project uses the **MERN technology stack**, which includes:
 - Understood frontend-backend integration  
 - Improved debugging and problem-solving skills  
 - Built scalable and maintainable web applications
+  
+  ##Finally,I built a full-stack web application built using the MERN stack (MongoDB, Express.js, React.js, Node.js) demonstrating end-to-end development including frontend, backend, and database integration.
