@@ -42,7 +42,7 @@ This project uses the **MERN technology stack**, which includes:
 - Complete CRUD operations for data management  
 - MongoDB integration for efficient data storage  
 - Modular and scalable project architecture
-  ## Learning Outcomes
+## Learning Outcomes
 - Gained hands-on experience in full-stack development  
 - Understood frontend-backend integration  
 - Improved debugging and problem-solving skills  
