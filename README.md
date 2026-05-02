@@ -36,5 +36,14 @@ This project uses the **MERN technology stack**, which includes:
 - Server-side JavaScript runtime
 - Handles server logic and API operations
 - Enables scalable network applications
-
----
+## Features
+- Responsive and dynamic user interface using React.js  
+- RESTful API development with Express.js and Node.js  
+- Complete CRUD operations for data management  
+- MongoDB integration for efficient data storage  
+- Modular and scalable project architecture
+  ## Learning Outcomes
+- Gained hands-on experience in full-stack development  
+- Understood frontend-backend integration  
+- Improved debugging and problem-solving skills  
+- Built scalable and maintainable web applications
